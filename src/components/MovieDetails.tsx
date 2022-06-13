@@ -24,7 +24,7 @@ export default function MovieDetails() {
     return (
         <section>
             <button onClick={() => navigate(-1)}>Back</button>
-            <h2>{movie.OriginalTitle}</h2>
+            <h2>{movie.originalTitle}</h2>
             <p>id: {movie.id}</p>
         </section>
     );

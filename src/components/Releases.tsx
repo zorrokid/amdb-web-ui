@@ -21,7 +21,7 @@ export default function Releases() {
                 {
                     releases ? <ul>{
                         releases.map((release: Release, index: number) =>
-                            <li key={index}>{release.format} {release.movie.OriginalTitle}</li>)
+                            <li key={index}>{release.mediaType} {release.movie.originalTitle}</li>)
                     }</ul> : null
                 }
             </ul>

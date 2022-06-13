@@ -1,4 +1,8 @@
 export interface Movie {
     id: number;
-    OriginalTitle: string;
+    originalTitle: string;
+    year: number;
+    productiohType: string;
+    director: string;
+    imdb: string;
 };
