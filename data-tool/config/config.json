@@ -1,0 +1,4 @@
+{
+    "inputFile": "./data/dvds.csv",
+    "outputFile": "../mock-api/db-test.json"
+}

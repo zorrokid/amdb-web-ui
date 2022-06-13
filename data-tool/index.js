@@ -1,51 +1,95 @@
 const fs = require('fs');
 const { parse } = require('csv-parse');
-console.log("Converts csv file to json");
-const args = process.argv.slice(2);
-if (args.length === 0) {
-    console.log("Enter path to csv to be converted");
-}
-console.log(args);
-const filePath = args[0];
 
-const processFile = async () => {
+const config = require("./config/config.json");
+const mapMovie = require('./config/mapMovie.json');
+const mapRelease = require('./config/mapRelease.json');
+
+console.log("Converts csv file to json");
+
+const readArgs = () => {
+    const args = process.argv.slice(2);
+
+    let inputFile = args[0];
+    let outputFile = args[1];
+
+    if (!inputFile) inputFile = config.inputFile
+    if (!outputFile) outputFile = config.outputFile;
+
+    if (!inputFile) {
+        console.log("Enter path to csv to be converted as first argument");
+        return;
+    }
+
+    if (!outputFile) {
+        console.log("Enter output file path as second argument.");
+        return;
+    }
+
+    return {
+        inputFile,
+        outputFile
+    };
+}
+
+const processFile = async (inputFile) => {
     const records = [];
     const parser = fs
-      .createReadStream(filePath)
+      .createReadStream(inputFile)
       .pipe(parse({
-      // CSV options if any
+        // CSV options if any
       }));
     for await (const record of parser) {
-      // Work with each record
       records.push(record);
     }
     return records;
 };
 
-const processRecords = async (records) => {
+const processRecords = async (records, outputFile) => {
     const fieldNames = records[0];
+    const valueRows = records.slice(1);
+    var moviesResult = [];
+    var releasesResult = [];
 
-    const objPrototype = {};
+    for(const row of valueRows) {
 
-    for (const field of fieldNames) {
-        objPrototype[field] = undefined;
-    }
+        var movie = {};
+        var release = {};
 
-    var result = [];
-    for(var i = 1; i < records.length; i++) {
-        var obj = Object.create(objPrototype);
-        for(var j = 0; j < fieldNames.length; j++) {
-            obj[fieldNames[j]] = records[i][j];
+        for(var i = 0; i < fieldNames.length; i++) {
+            const currField = fieldNames[i];
+
+            if (mapMovie[currField]) {
+                movie[mapMovie[currField]] = row[i];
+            }            
+            if (mapRelease[currField]) {
+                release[mapRelease[currField]] = row[i];
+            }
         }
-        result.push(obj);
+
+        if (movie) {
+            moviesResult.push(movie);
+        }
+
+        if (release) {
+            releasesResult.push(release);
+        }
     }
-    const ws = fs.createWriteStream('./data/test.json');
-    ws.write(JSON.stringify(result));
+    const ws = fs.createWriteStream(outputFile);
+    const dataResult = {
+        movies: moviesResult,
+        releases: releasesResult
+    };
+    ws.write(JSON.stringify(dataResult));
 }
   
 (async () => {
-    const records = await processFile();
-    await processRecords(records);
+    console.log("Starting processing.");
+    const args = readArgs();
+    const records = await processFile(args.inputFile);
+    console.log(`Got ${records.length} records.`);
+    await processRecords(records, args.outputFile);
+    console.log("Finished processing."); 
 })();
   
   
