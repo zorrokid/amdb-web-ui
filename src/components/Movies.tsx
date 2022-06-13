@@ -17,14 +17,13 @@ export default function Movies() {
     return (
         <>
             <h2>Movies</h2>
-            <ul>
-                {
-                    movies ? <ul>{
-                        movies.map((movie: Movie, index: number) =>
-                            <li key={index}><ListMovie movie={movie} /></li>)
-                    }</ul> : null
-                }
-            </ul>
+            <section>
+            {
+                movies 
+                ? movies.map((movie: Movie, index: number) => <ListMovie movie={movie} />) 
+                : null
+            }
+            </section>
         </>
     );
 }
