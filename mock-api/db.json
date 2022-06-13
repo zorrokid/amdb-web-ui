@@ -1,0 +1,101 @@
+{
+    "movies": [
+        {
+            "id": 1,
+            "OriginalTitle": "Star Wars",
+            "Director": "George Lucas",
+            "Actors": [
+                "Mark Hamill",
+                "Carrie Fisher",
+                "Harrison Ford"
+            ]
+        },
+        {
+            "id": 2,
+            "OriginalTitle": "Star Wars",
+            "Director": "George Lucas",
+            "Actors": [
+                "Mark Hamill",
+                "Carrie Fisher",
+                "Harrison Ford"
+            ]
+        }
+    ],
+    "releases": [
+        {
+            "id": 1,
+            "format": "DVD",
+            "discs": 2,
+            "countryCodes": [
+                "fi",
+                "sv",
+                "no"
+            ],
+            "subtitles": [
+                "finnish",
+                "swedish",
+                "english"
+            ],
+            "movie": {
+                "id": 1,
+                "OriginalTitle": "Star Wars",
+                "Director": "George Lucas",
+                "Actors": [
+                    "Mark Hamill",
+                    "Carrie Fisher",
+                    "Harrison Ford"
+                ]
+            }
+        },
+        {
+            "id": 2,
+            "format": "DVD",
+            "discs": 2,
+            "countryCodes": [
+                "fi",
+                "sv",
+                "no"
+            ],
+            "subtitles": [
+                "finnish",
+                "swedish",
+                "english"
+            ],
+            "movie": {
+                "id": 1,
+                "OriginalTitle": "Star Wars",
+                "Director": "George Lucas",
+                "Actors": [
+                    "Mark Hamill",
+                    "Carrie Fisher",
+                    "Harrison Ford"
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "format": "DVD",
+            "discs": 2,
+            "countryCodes": [
+                "fi",
+                "sv",
+                "no"
+            ],
+            "subtitles": [
+                "finnish",
+                "swedish",
+                "english"
+            ],
+            "movie": {
+                "id": 1,
+                "OriginalTitle": "Star Wars",
+                "Director": "George Lucas",
+                "Actors": [
+                    "Mark Hamill",
+                    "Carrie Fisher",
+                    "Harrison Ford"
+                ]
+            }
+        }
+    ]
+}
