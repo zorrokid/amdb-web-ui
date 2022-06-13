@@ -72,6 +72,7 @@ const processRecords = async (records, outputFile) => {
         }
 
         if (release) {
+            release.movie = movie;
             releasesResult.push(release);
         }
     }
