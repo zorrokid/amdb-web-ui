@@ -1,0 +1,19 @@
+$link-color: aqua;
+$text-color: bisque;
+$backgroud-color: darkslategray;
+a:link {
+  color: $link-color;
+}
+
+a:visited {
+  color: $link-color;
+}
+
+body {
+  background-color: $backgroud-color;
+  color:  $text-color;
+}
+
+section {
+  display: flex;
+}

@@ -6,6 +6,7 @@ import Movies from './components/Movies';
 import Releases from './components/Releases';
 import MovieDetails from './components/MovieDetails';
 import ReleaseDetails from './components/ReleaseDetails';
+import './App.scss';
 
 function App() {
   return (
