@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
 import { Movie } from "../models/Movie";
 import { getMovies } from "../services/moviesService";
+import ListMovie from "./ListMovie";
 
 export default function Movies() {
-    const initialState: Movie[] = [];
-    const [movies, setMovies] = useState(initialState);
-
+    const [movies, setMovies] = useState<Movie[]>([]);
 
     useEffect(() => {
-
         const getResult = async () => {
             const movies = await getMovies();
             setMovies(movies);
         }
-
         getResult();
     }, []);
 
@@ -24,7 +21,7 @@ export default function Movies() {
                 {
                     movies ? <ul>{
                         movies.map((movie: Movie, index: number) =>
-                            <li key={index}>{movie.OriginalTitle}</li>)
+                            <li key={index}><ListMovie movie={movie} /></li>)
                     }</ul> : null
                 }
             </ul>

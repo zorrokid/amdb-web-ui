@@ -4,17 +4,13 @@ import { getReleases } from "../services/releasesService";
 
 export default function Releases() {
 
-    const initialState: Release[] = [];
-    const [releases, setReleases] = useState(initialState);
-
+    const [releases, setReleases] = useState<Release[]>([]);
 
     useEffect(() => {
-
         const getResult = async () => {
             const movies = await getReleases();
             setReleases(movies);
         }
-
         getResult();
     }, []);
 
