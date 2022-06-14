@@ -1,31 +1,22 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { Movie } from "../models/Movie";
 import { getMovie } from "../services/moviesService";
-
-type MovieState = Movie | undefined;
+import Spinner from "./Spinner";
 
 export default function MovieDetails() {
     const { id } = useParams();
-    const [movie, setMovie] = useState<Movie | null>(null);
     const navigate = useNavigate();
+    const { isLoading, error, data } = useQuery(`movie-details-${id}`, () => getMovie(id))
 
-    useEffect(() => {
-        if (!id) return;
-        const getResult = async () => {
-            const m = await getMovie(parseInt(id));
-            setMovie(m);
-        }
-        getResult();
-    }, []);
-
-    if (!movie) return <></>;
+    if (isLoading) return <Spinner />;
+    if (error) throw error;
+    if (!data) return <></>;
 
     return (
         <section>
             <button onClick={() => navigate(-1)}>Back</button>
-            <h2>{movie.originalTitle}</h2>
-            <p>id: {movie.id}</p>
+            <h2>{data.originalTitle}</h2>
+            <p>id: {data.id}</p>
         </section>
     );
 }
