@@ -24,7 +24,7 @@ export default function Movies() {
         <>
             <Filters submit={submit} />
             <h2>Movies</h2>
-            <section>
+            <section className="container">
                 {
                     data
                         ? data.map((movie: Movie, index: number) => <ListMovie movie={movie} />)

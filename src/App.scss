@@ -1,6 +1,7 @@
 $link-color: aqua;
 $text-color: bisque;
 $backgroud-color: darkslategray;
+
 a:link {
   color: $link-color;
 }
@@ -11,9 +12,29 @@ a:visited {
 
 body {
   background-color: $backgroud-color;
-  color:  $text-color;
+  color: $text-color;
 }
 
-section {
+.container {
   display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  padding: 20px;
+  width: 400px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 250px auto;
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+.grid__item {
+
+  &--header {
+    background-color: blueviolet;
+  }
 }

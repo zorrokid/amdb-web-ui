@@ -13,10 +13,40 @@ export default function MovieDetails() {
     if (!data) return <></>;
 
     return (
-        <section>
+        <>
             <button onClick={() => navigate(-1)}>Back</button>
-            <h2>{data.originalTitle}</h2>
-            <p>id: {data.id}</p>
-        </section>
+            <div className="grid">
+                <div className="grid__item--header">
+                    Original title
+                </div>
+                <div className="grid__item">
+                    <h2>{data.originalTitle}</h2>
+                </div>
+                <div className="grid__item--header">
+                    Director
+                </div>
+                <div className="grid__item">
+                    {data.director}
+                </div>
+                <div className="grid__item--header">
+                    IMDB
+                </div>
+                <div className="grid__item">
+                    <p><a href={`https://www.imdb.com/title/${data.imdb}`}>IMDB</a></p>
+                </div>
+                <div className="grid__item--header">
+                    Production type
+                </div>
+                <div className="grid__item">
+                    {data.productiohType}
+                </div>
+                <div className="grid__item--header">
+                    ID
+                </div>
+                <div className="grid__item">
+                    {data.id}
+                </div>
+            </div>
+        </>
     );
 }
