@@ -1,21 +1,24 @@
 import { ChangeEvent, useState, MouseEvent } from "react";
+import { MoviesFilter } from "../services/moviesService";
 
-export default function Filters({submit}: {submit: Function}) {
-    const [ titleName, setTitleName ] = useState("");
+export interface FiltersProps {
+    filter: MoviesFilter;
+    updateFilter: (filter: MoviesFilter) => void;
+}
 
-    const updateTitleName = (ev: ChangeEvent<HTMLInputElement>) => {
-        setTitleName(ev.target.value);
-        console.log(titleName);
-    }
+export default function Filters(filterProps: FiltersProps) {
 
-    const submitForm = (ev: MouseEvent) => {
-        submit();
+    const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
+        const newFilter = {
+            ...filterProps.filter,
+            [ev.target.id]: ev.target.value
+        };
+        filterProps.updateFilter(newFilter);
     }
 
     return (
         <>
-            <input value={titleName} type="text" onChange={updateTitleName}/>
-            <button onClick={submitForm}>Submit</button>
+            <input autoFocus value={filterProps.filter.name} type="text" onChange={handleChange} id="name" />
         </>
     );
 }
