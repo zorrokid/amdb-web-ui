@@ -8,6 +8,7 @@ import Releases from './components/Releases';
 import MovieDetails from './components/MovieDetails';
 import ReleaseDetails from './components/ReleaseDetails';
 import './App.scss';
+import MovieForm from './components/MovieForm';
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/movies/:id" element={<MovieDetails />} />
+        <Route path="/movies/:id/edit" element={<MovieForm />} />
         <Route path="/releases" element={<Releases />} />
         <Route path="/releases/:id" element={<ReleaseDetails />} />
       </Routes>

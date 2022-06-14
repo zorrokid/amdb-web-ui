@@ -15,6 +15,7 @@ export default function MovieDetails() {
     return (
         <>
             <button onClick={() => navigate(-1)}>Back</button>
+            <button onClick={() => navigate('edit')}>Edit</button>
             <div className="grid">
                 <div className="grid__item--header">
                     Original title
