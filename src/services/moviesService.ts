@@ -1,4 +1,4 @@
-import { Movie } from "../models/Movie";
+import { IAddMovie, Movie } from "../models/Movie";
 
 export interface MoviesFilter {
     start?: number;
@@ -32,7 +32,7 @@ export async function getMovie(id: string | undefined): Promise<Movie> {
     return response.json();
 }
 
-export async function addMovie(movie: Movie) {
+export async function addMovie(movie: IAddMovie) {
     const response = await fetch('http://localhost:3000/movies', {
         method: 'POST',
         headers: {

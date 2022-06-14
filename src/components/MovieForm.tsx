@@ -7,7 +7,7 @@ import Spinner from "./Spinner";
 export default function MovieForm() {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { isLoading, error, data } = useQuery(`movie-details-${id}`, () => getMovie(id))
+    const { isLoading, error, data } = useQuery(['movie', id], () => getMovie(id))
 
     if (isLoading) return <Spinner />;
     if (error) throw error;
