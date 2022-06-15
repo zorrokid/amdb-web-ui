@@ -7,5 +7,5 @@ export interface IAddMovie {
 };
 
 export interface Movie extends IAddMovie {
-    id: number;
+    id?: number;
 };
