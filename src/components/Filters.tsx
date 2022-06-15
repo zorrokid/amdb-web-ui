@@ -8,17 +8,24 @@ export interface FiltersProps {
 
 export default function Filters(filterProps: FiltersProps) {
 
+    const [filter, setFilter] = useState(filterProps.filter);
+
     const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
         const newFilter = {
             ...filterProps.filter,
             [ev.target.id]: ev.target.value
         };
-        filterProps.updateFilter(newFilter);
+        setFilter(newFilter);
+    }
+
+    const updateFilter = () => {
+        filterProps.updateFilter(filter);
     }
 
     return (
         <>
-            <input autoFocus value={filterProps.filter.name} type="text" onChange={handleChange} id="name" />
+            <input autoFocus value={filter.name} type="text" onChange={handleChange} id="name" />
+            <button onClick={updateFilter}>Update</button>
         </>
     );
 }
