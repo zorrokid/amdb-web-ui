@@ -6,9 +6,8 @@ import { addMovie } from "../services/moviesService";
 import Spinner from "./Spinner";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-const emptyMovie: Movie = {
+const emptyMovie: IAddMovie = {
     director: "",
-    id: 0,
     imdb: "",
     originalTitle: "",
     productiohType: "",
@@ -16,12 +15,12 @@ const emptyMovie: Movie = {
 }
 
 export default function AddMovieForm() {
-    const { register, handleSubmit } = useForm<IAddMovie>();
-    const [movie, setMovie] = useState<Movie>(emptyMovie);
+    const { register, handleSubmit, formState: { errors } } = useForm<Movie>();
+    const [movie, setMovie] = useState<IAddMovie>(emptyMovie);
     const navigate = useNavigate();
     const addMovieMutation = useMutation((newMovie: IAddMovie) => addMovie(newMovie));
 
-    const onSubmit: SubmitHandler<IAddMovie> = data => {
+    const onSubmit: SubmitHandler<Movie> = data => {
         console.log(data);
         addMovieMutation.mutate(data);
     }
@@ -49,13 +48,12 @@ export default function AddMovieForm() {
     }
 
     if (addMovieMutation.isSuccess) {
-        return <>Added movie.</>;
+        return <>Movie added.</>;
     }
 
     return (
         <>
             <button onClick={() => navigate(-1)}>Back</button>
-            <button onClick={handleSubmit(onSubmit)}>Save changes</button>
             <h1>Add movie</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid">
@@ -63,7 +61,8 @@ export default function AddMovieForm() {
                         Original title
                     </div>
                     <div className="grid__item">
-                        <input {...register("originalTitle", { required: true })} />
+                        <input {...register("originalTitle", { required: 'Original title is required' })} />
+                        {errors.originalTitle && <span>{errors.originalTitle?.message}</span>}
                     </div>
                     <div className="grid__item--header">
                         Director
@@ -81,7 +80,8 @@ export default function AddMovieForm() {
                         Production type
                     </div>
                     <div className="grid__item">
-                        <input {...register("productiohType", { required: true })} />
+                        <input {...register("productiohType", { required: 'Production type is required' })} />
+                        {errors.productiohType && <span>{errors.productiohType?.message}</span>}
                     </div>
                     <div className="grid__item--header"></div>
                     <div className="grid__item">
