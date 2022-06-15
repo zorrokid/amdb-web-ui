@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
@@ -10,9 +11,13 @@ export default function MovieEditForm({ movie }: { movie: Movie }) {
 
     const editMovieMutation = useMutation((newMovie: Movie) => updateMovie(newMovie));
 
-    const { register, handleSubmit, formState: { errors } } = useForm<Movie>(
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<Movie>(
         { defaultValues: movie }
     );
+    
+    useEffect(() => {
+        reset(movie);
+    },[movie]);
 
     const onSubmit: SubmitHandler<Movie> = movie => {
         console.log(movie);
@@ -28,7 +33,11 @@ export default function MovieEditForm({ movie }: { movie: Movie }) {
     }
 
     if (editMovieMutation.isSuccess) {
-        return <>Done updating movie.</>;
+        return (
+        <>
+            <button onClick={() => navigate(-1)}>Back</button>
+            <>Done updating movie.</>
+        </>);
     }
 
     return (
