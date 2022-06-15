@@ -10,6 +10,7 @@ import ReleaseDetails from './components/ReleaseDetails';
 import './App.scss';
 import MovieForm from './components/MovieForm';
 import AddMovieForm from './components/AddMovieForm';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <ErrorBoundary>
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
@@ -28,6 +30,7 @@ function App() {
         <Route path="/releases/:id" element={<ReleaseDetails />} />
       </Routes>
       <Footer />
+      </ErrorBoundary>
     </QueryClientProvider>
   );
 }
