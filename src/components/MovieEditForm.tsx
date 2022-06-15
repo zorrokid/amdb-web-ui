@@ -3,6 +3,7 @@ import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { Movie } from "../models/Movie";
 import { updateMovie } from "../services/moviesService";
+import Spinner from "./Spinner";
 
 export default function MovieEditForm({ movie }: { movie: Movie }) {
     const navigate = useNavigate();
@@ -13,22 +14,27 @@ export default function MovieEditForm({ movie }: { movie: Movie }) {
         { defaultValues: movie }
     );
 
-    const submit = () => {
-        console.log("Submit");
-    }
-
     const onSubmit: SubmitHandler<Movie> = movie => {
         console.log(movie);
         editMovieMutation.mutate(movie);
     }
 
+    if (editMovieMutation.error) {
+        throw editMovieMutation.error;
+    }
+
+    if (editMovieMutation.isLoading) {
+        return <Spinner />;
+    }
+
+    if (editMovieMutation.isSuccess) {
+        return <>Done updating movie.</>;
+    }
 
     return (
         <>
             <button onClick={() => navigate(-1)}>Back</button>
-            <button onClick={() => submit()}>Save changes</button>
-            <h1>Edit</h1>
-
+            <h1>Edit movie</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid">
                     <div className="grid__item--header">
