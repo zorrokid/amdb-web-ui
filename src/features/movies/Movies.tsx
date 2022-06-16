@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { MoviesFilter, useGetMoviesQuery } from "../features/movies/movieService";
-import { Movie } from "../models/Movie";
+import { MoviesFilter, useGetMoviesQuery } from "./movieService";
+import { Movie } from "./Movie";
 import Filters from "./Filters";
 import ListMovie from "./ListMovie";
-import Spinner from "./Spinner";
+import Spinner from "../../components/Spinner";
 
 export default function Movies() {
     const navigate = useNavigate();

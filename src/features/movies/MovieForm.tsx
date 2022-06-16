@@ -1,8 +1,8 @@
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { getMovie } from "../services/moviesService";
+import { getMovie } from "../../services/moviesService";
 import MovieEditForm from "./MovieEditForm";
-import Spinner from "./Spinner";
+import Spinner from "../../components/Spinner";
 
 export default function MovieForm() {
     const { id } = useParams();

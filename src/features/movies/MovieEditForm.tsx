@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { Movie } from "../models/Movie";
-import { updateMovie } from "../services/moviesService";
-import Spinner from "./Spinner";
+import { Movie } from "./Movie";
+import { updateMovie } from "../../services/moviesService";
+import Spinner from "../../components/Spinner";
 
 export default function MovieEditForm({ movie }: { movie: Movie }) {
     const navigate = useNavigate();
@@ -14,10 +14,10 @@ export default function MovieEditForm({ movie }: { movie: Movie }) {
     const { register, handleSubmit, reset, formState: { errors } } = useForm<Movie>(
         { defaultValues: movie }
     );
-    
+
     useEffect(() => {
         reset(movie);
-    },[movie]);
+    }, [movie]);
 
     const onSubmit: SubmitHandler<Movie> = movie => {
         console.log(movie);
@@ -34,10 +34,10 @@ export default function MovieEditForm({ movie }: { movie: Movie }) {
 
     if (editMovieMutation.isSuccess) {
         return (
-        <>
-            <button onClick={() => navigate(-1)}>Back</button>
-            <>Done updating movie.</>
-        </>);
+            <>
+                <button onClick={() => navigate(-1)}>Back</button>
+                <>Done updating movie.</>
+            </>);
     }
 
     return (

@@ -1,4 +1,4 @@
-import { Movie } from "./Movie";
+import { Movie } from "../features/movies/Movie";
 
 export interface Release {
     movie: Movie;

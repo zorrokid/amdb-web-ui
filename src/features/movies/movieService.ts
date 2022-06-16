@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Movie } from "../../models/Movie";
+import { Movie } from "../../features/movies/Movie";
 
 export interface MoviesFilter {
     start?: number;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Release } from "../models/Release";
-import { getReleases } from "../services/releasesService";
+import { Release } from "../../models/Release";
+import { getReleases } from "../../services/releasesService";
 
 export default function Releases() {
 

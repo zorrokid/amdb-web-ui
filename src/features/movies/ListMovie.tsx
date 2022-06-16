@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Movie } from "../models/Movie";
+import { Movie } from "./Movie";
 
 export default function ListMovie({ movie }: { movie: Movie }) {
     return (

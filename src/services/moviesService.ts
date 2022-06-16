@@ -1,4 +1,4 @@
-import { IAddMovie, Movie } from "../models/Movie";
+import { IAddMovie, Movie } from "../features/movies/Movie";
 
 export async function getMovie(id: string | undefined): Promise<Movie> {
     const response = await fetch(`http://localhost:3000/movies/${id}`);

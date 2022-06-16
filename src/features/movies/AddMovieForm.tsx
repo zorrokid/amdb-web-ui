@@ -1,9 +1,9 @@
 import { ChangeEvent, MouseEvent, useState } from "react";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { IAddMovie, Movie } from "../models/Movie";
-import { addMovie } from "../services/moviesService";
-import Spinner from "./Spinner";
+import { IAddMovie, Movie } from "./Movie";
+import { addMovie } from "../../services/moviesService";
+import Spinner from "../../components/Spinner";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 const emptyMovie: IAddMovie = {

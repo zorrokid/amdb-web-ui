@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { getMovie } from "../services/moviesService";
-import Spinner from "./Spinner";
+import { getMovie } from "../../services/moviesService";
+import Spinner from "../../components/Spinner";
 
 export default function MovieDetails() {
     const { id } = useParams();
