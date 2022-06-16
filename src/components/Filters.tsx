@@ -1,5 +1,5 @@
-import { ChangeEvent, useState, MouseEvent } from "react";
-import { MoviesFilter } from "../services/moviesService";
+import { ChangeEvent, useState } from "react";
+import { MoviesFilter } from "../features/movies/movieService";
 
 export interface FiltersProps {
     filter: MoviesFilter;

@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
+import { MoviesFilter, useGetMoviesQuery } from "../features/movies/movieService";
 import { Movie } from "../models/Movie";
-import { getMovies, MoviesFilter } from "../services/moviesService";
 import Filters from "./Filters";
 import ListMovie from "./ListMovie";
 import Spinner from "./Spinner";
@@ -10,7 +9,7 @@ import Spinner from "./Spinner";
 export default function Movies() {
     const navigate = useNavigate();
     const [filter, setFilter] = useState<MoviesFilter>({ start: 1, end: 50 });
-    const { isLoading, error, data } = useQuery(['movies', filter], () => getMovies(filter));
+    const { data, error, isLoading } = useGetMoviesQuery(filter);
     const updateFilter = (filter: MoviesFilter) => setFilter(filter);
 
     if (isLoading) return <Spinner />;
